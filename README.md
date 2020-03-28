@@ -14,4 +14,11 @@ Simple baremetal image blinking simultaneously both the LEDs. Interrupts disable
 Baremetal image with green LED fixed and red LED bliking.
 Interrupts enabled, SCB_VTOR = 0x0800C000, .data and .bss initialised and libc integration.
   
+**Status**: BOOTS OK.
+
+  
+### Test 3:
+Baremetal image with green LED fixed and red LED bliking, interrupts working.
+Interrupts enabled, SCB_VTOR = 0x0800C000, .data and .bss initialised and libc integration.
+  
 **Status**: TESTING.
