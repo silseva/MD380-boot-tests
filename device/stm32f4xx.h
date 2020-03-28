@@ -146,9 +146,8 @@ typedef enum IRQn IRQn_Type;
   * @}
   */
 
-// #include "core_cm4.h"             /* Cortex-M4 processor and core peripherals */
-// #include "system_stm32f4xx.h"
-// #include <stdint.h>
+#include "core_cm4.h"             /* Cortex-M4 processor and core peripherals */
+#include "system_stm32f4xx.h"
 
 /** @addtogroup Exported_types
   * @{
