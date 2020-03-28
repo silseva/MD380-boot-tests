@@ -51,8 +51,8 @@ void Reset_Handler()
 {
     __disable_irq();
 
-    // Relocate interrupt table to application load address
-    SCB->VTOR = 0x0800C000;
+    //Call CMSIS init function, it's safe to do it here.
+    SystemInit();
 
     //These are defined in the linker script
     extern unsigned char _etext asm("_etext");

@@ -47,7 +47,7 @@ OPTLEVEL := -O0
 ## You should not need to modify anything below                             ##
 ##############################################################################
 
-LIB_SRC := ./startup.cpp ./libc_integration.cpp
+LIB_SRC := ./startup.cpp ./libc_integration.cpp ../device/system_stm32f4xx.c
 
 ALL_SRC := $(LIB_SRC) $(SRC)
 CONFIGS := $(TARGET) $(CLK_FREQ) $(OPTLEVEL) -DDONT_USE_CMSIS_INIT
@@ -66,7 +66,7 @@ OBJ := $(addsuffix .o, $(basename $(ALL_SRC)))
 CXXFLAGS := $(INCLUDE_DIRS) -I../device -mcpu=cortex-m4 -mthumb $(CONFIGS) \
 	    $(DEFINES) $(EXCEPT) -c -g -std=c++11
 CFLAGS   := $(INCLUDE_DIRS) -I../device -mcpu=cortex-m4 -mthumb $(CONFIGS) \
-	    $(DEFINES) $(EXCEPT) -c -g -std=c++11
+	    $(DEFINES) $(EXCEPT) -c -g
 AFLAGS   := -mcpu=cortex-m4 -mthumb
 LFLAGS   := -mcpu=cortex-m4 -mthumb -Wl,--gc-sections -Wl,-Map,main.map \
  	    $(OPTLEVEL) -nostdlib -Wl,-T./linker_script.ld

@@ -45,6 +45,11 @@ public:
         reinterpret_cast<GPIO_TypeDef*>(P)->BSRRH = 1 << N;
     }
 
+    static void toggle()
+    {
+        reinterpret_cast<GPIO_TypeDef*>(P)->ODR ^= 1 << N;
+    }
+
 private:
     Pin();
 };
@@ -62,24 +67,19 @@ static void delay()
 using red = Pin<GPIOE_BASE, 1>;
 using grn = Pin<GPIOE_BASE, 0>;
 
-void __attribute__((used)) SysTick_Handler() {
-    static bool state = false;
-    if (state)
-        grn::high();
-    else
-        grn::low();
-    state = ~state;
+void __attribute__((used)) SysTick_Handler()
+{
+    grn::toggle();
 }
 
-void setupSysTick() {
-    NVIC_SetPriorityGrouping(7);//This should disable interrupt nesting
-    NVIC_SetPriority(SVCall_IRQn,3);//High priority for SVC (Max=0, min=15)
-    NVIC_SetPriority(SysTick_IRQn,3);//High priority for SysTick (Max=0, min=15)
-    NVIC_SetPriority(MemoryManagement_IRQn,2);//Higher priority for MemoryManagement (Max=0, min=15)
-    SysTick->LOAD=SystemCoreClock/TICK_FREQ;
-    //Start SysTick, set to generate interrupts
-    SysTick->CTRL=SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_TICKINT_Msk |
-    SysTick_CTRL_CLKSOURCE_Msk;
+void setupSysTick()
+{
+    NVIC_SetPriorityGrouping(7);
+    NVIC_SetPriority(SysTick_IRQn,3);
+    SysTick->LOAD = SystemCoreClock/TICK_FREQ;
+    SysTick->CTRL = SysTick_CTRL_ENABLE_Msk
+                  | SysTick_CTRL_TICKINT_Msk
+                  | SysTick_CTRL_CLKSOURCE_Msk;
 }
 
 int main()
@@ -95,6 +95,8 @@ int main()
     while(1)
     {
         red::high();
+        delay();
+        red::low();
         delay();
     }
 

@@ -18,7 +18,8 @@ Interrupts enabled, SCB_VTOR = 0x0800C000, .data and .bss initialised and libc i
 
   
 ### Test 3:
-Baremetal image with green LED fixed and red LED bliking, interrupts working.
-Interrupts enabled, SCB_VTOR = 0x0800C000, .data and .bss initialised and libc integration.
+Interrupts enabled, SCB_VTOR = 0x0800C000, .data and .bss initialised, libc integration and call to CMSIS SystemInit() during startup.
+Here we test interrupts: red LED is blinked in main(), while green LED is toggled inside SysTick interrupt handler.
+*Note:* actually VTOR setting is hardcoded at line 182 of file "device/system_stm32f4xx.c", to be improved.
   
 **Status**: TESTING.
