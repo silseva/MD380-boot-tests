@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2018 by Silvano Seva                                    *
+ *   Copyright (C) 2020 by Silvano Seva                                    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -31,7 +31,7 @@ void delay()
 {
     volatile int i;
     int j=0;
-    for(i=0;i<3;i++)
+    for(i=0;i<1000000;i++)
     {
         j++;
     }

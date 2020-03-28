@@ -7,6 +7,7 @@ MEMORY
     ram(wx)   : ORIGIN = 0x20000000, LENGTH = 128K
 }
 
+/* Put stack top at an address which, masked with 0x2FFE0000, gives 0x20000000*/
 _stack_top = 0x20000000+64*1024;
 
 SECTIONS
