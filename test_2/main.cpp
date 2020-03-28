@@ -33,12 +33,12 @@ class Pin
 public:
     static void high()
     {
-        reinterpret_cast<GPIO_TypeDef*>(P)->BSRRL |= N;
+        reinterpret_cast<GPIO_TypeDef*>(P)->BSRRL = 1 << N;
     }
 
     static void low()
     {
-        reinterpret_cast<GPIO_TypeDef*>(P)->BSRRH |= N;
+        reinterpret_cast<GPIO_TypeDef*>(P)->BSRRH = 1 << N;
     }
 
 private:
@@ -55,8 +55,8 @@ static void delay()
     }
 }
 
-using red = Pin<GPIOE_BASE, 0>;
-using grn = Pin<GPIOE_BASE, 1>;
+using red = Pin<GPIOE_BASE, 1>;
+using grn = Pin<GPIOE_BASE, 0>;
 
 int main()
 {

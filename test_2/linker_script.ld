@@ -12,7 +12,7 @@
 /* stack top in large ram, at an address which, masked with 0x2FFE0000,
    gives 0x20000000
 */
-_stack_top = 0x20000000 + 64K;
+_stack_top = 0x2001FFFF;
 
 /* temporary set heap end equal to stack top */
 _heap_end = _stack_top;
@@ -26,7 +26,7 @@ MEMORY
 {
     flash(rx)   : ORIGIN = 0x0800C000, LENGTH = 1M - 48K
     smallram(wx) : ORIGIN = 0x10000200, LENGTH = 64K
-    largeram(wx) : ORIGIN = 0x20000000, LENGTH = 64K
+    largeram(wx) : ORIGIN = 0x20000000, LENGTH = 128K
 }
 
 /* now define the output sections  */
