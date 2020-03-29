@@ -22,4 +22,9 @@ Interrupts enabled, SCB_VTOR = 0x0800C000, .data and .bss initialised, libc inte
 Here we test interrupts: red LED is blinked in main(), while green LED is toggled inside SysTick interrupt handler.
 *Note:* actually VTOR setting is hardcoded at line 182 of file "device/system_stm32f4xx.c", to be improved.
   
-**Status**: TESTING.
+**Status**: BOOTS OK.
+
+### Test 4:
+Simple application using FreeRTOS.
+  
+**Status**: BOOTS OK.
