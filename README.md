@@ -25,6 +25,6 @@ Here we test interrupts: red LED is blinked in main(), while green LED is toggle
 **Status**: BOOTS OK.
 
 ### Test 4:
-Simple application using FreeRTOS.
+Simple application using FreeRTOS. blinking red and green LEDs in separate threads.
   
-**Status**: BOOTS OK.
+**Status**: TESTING.
