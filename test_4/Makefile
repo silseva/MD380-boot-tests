@@ -3,16 +3,16 @@
 ## List here your source files (both .s, .c and .cpp)
 ##
 SRC := \
-Source/croutine.c                   \
-Source/stream_buffer.c              \
-Source/timers.c                     \
-Source/event_groups.c               \
-Source/list.c                       \
-Source/queue.c                      \
-Source/tasks.c                      \
-Source/portable/GCC/ARM_CM4F/port.c \
-Source/portable/MemMang/heap_1.c    \
-Application/main.c
+Source/croutine.c                     \
+Source/stream_buffer.c                \
+Source/timers.c                       \
+Source/event_groups.c                 \
+Source/list.c                         \
+Source/queue.c                        \
+Source/tasks.c                        \
+Source/portable/GCC/ARM_CM4F/port.c   \
+Source/portable/MemMang/heap_3.c      \
+main.c
 
 
 ##
@@ -23,12 +23,13 @@ LIBS :=
 ##
 ## List here additional include directories (in the form -Iinclude_dir)
 ##
-INCLUDE_DIRS := -ISource/include -ISource/portable/GCC/ARM_CM4F -IApplication
+INCLUDE_DIRS := -ISource/include -ISource/portable/GCC/ARM_CM4F -I.
 
 ##
 ## List here additional defines
 ##
-DEFINES := -DARMMATHCM4 -DARMMATHMATRIXCHECK -DARMMATHROUNDING -D__FPU_PRESENT=1
+DEFINES := 
+#-DARMMATHCM4 -DARMMATHMATRIXCHECK -DARMMATHROUNDING 
 
 ##
 ## Define used to select target processor
@@ -58,7 +59,8 @@ OPTLEVEL := -O0
 ## You should not need to modify anything below                             ##
 ##############################################################################
 
-LIB_SRC := ./startup.cpp ./libc_integration.cpp ../device/system_stm32f4xx.c
+LIB_SRC := ./Boot/startup.cpp ./Boot/libc_integration.cpp \
+           ../device/system_stm32f4xx.c
 
 ALL_SRC := $(LIB_SRC) $(SRC)
 CONFIGS := $(TARGET) $(CLK_FREQ) $(OPTLEVEL) -DDONT_USE_CMSIS_INIT
@@ -80,7 +82,7 @@ CFLAGS   := $(INCLUDE_DIRS) -I../device -mcpu=cortex-m4 -mthumb         \
 	 -mfloat-abi=softfp $(CONFIGS) $(DEFINES) $(EXCEPT) -c -g
 AFLAGS   := -mcpu=cortex-m4 -mthumb
 LFLAGS   := -mcpu=cortex-m4 -mthumb -Wl,--gc-sections -Wl,-Map,main.map \
- 	    $(OPTLEVEL) -nostdlib -Wl,-T./linker_script.ld
+ 	    $(OPTLEVEL) -nostdlib -Wl,-T./Boot/linker_script.ld
 DFLAGS   := -MMD -MP
 
 LINK_LIBS := $(LIBS) -Wl,--start-group -lc -lgcc -Wl,--end-group
